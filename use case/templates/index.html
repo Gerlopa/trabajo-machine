@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning App</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- 🔝 NAVBAR -->
+<div class="navbar">
+    <div class="nav-container">
+
+        <div class="nav-item">
+            <a href="/">Home</a>
+        </div>
+
+        <div class="nav-item">
+            <a href="#">ML Use Cases ▼</a>
+            <div class="submenu">
+                <a href="/case1">Use Case 1</a>
+                <a href="/case2">Use Case 2</a>
+                <a href="/case3">Use Case 3</a>
+                <a href="/case4">Use Case 4</a>
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <a href="#">Supervised ML ▼</a>
+            <div class="submenu">
+
+                <div class="submenu-item">
+                    <a href="#">Linear Regression ▶</a>
+                    <div class="subsubmenu">
+                        <a href="/regression">Application</a>
+                    </div>
+                </div>
+
+                <a href="/logistic">Logistic Regression</a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="container">
+    {% block content %}
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Machine Learning</h1>
+            <p>Explore models, predictions and real-world applications</p>
+        </div>
+    </div>
+
+    <!-- CARDS -->
+    <div class="card">
+        <h2>Welcome </h2>
+        <p>This application demonstrates Machine Learning models.</p>
+    </div>
+
+    <div class="card">
+        <h2>Models Available</h2>
+        <p>Linear Regression and Logistic Regression.</p>
+    </div>
+
+    {% endblock %}
+</div>
+
+</body>
+</html>
