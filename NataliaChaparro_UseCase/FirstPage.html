@@ -17,35 +17,112 @@
             margin: 0 auto;
             padding: 20px;
         }
-        
+
+        /* Mismo menú que index */
         .navbar {
-            background: rgba(0,0,0,0.7);
-            padding: 15px;
-            border-radius: 50px;
-            margin-bottom: 30px;
-            text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(136, 193, 71, 0.3);
         }
-        
-        .navbar a {
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
             color: #88c147;
             text-decoration: none;
             font-size: 18px;
-            margin: 0 20px;
-            padding: 8px 15px;
-            transition: all 0.3s ease;
+            font-weight: bold;
+            padding: 10px 20px;
+            display: block;
+            transition: 0.3s;
+            border-radius: 30px;
         }
-        
-        .navbar a:hover {
+
+        .nav-item > a:hover {
             background: #88c147;
             color: #1a3b4f;
-            border-radius: 25px;
         }
-        
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            min-width: 280px;
+            padding: 15px 0;
+            margin-top: 10px;
+            border: 1px solid rgba(136, 193, 71, 0.3);
+        }
+
+        .submenu a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 10px 25px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .submenu a:hover {
+            background: #88c147;
+            color: #1a3b4f;
+            padding-left: 35px;
+        }
+
+        .nav-item:hover .submenu {
+            display: block;
+        }
+
+        .subsubmenu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            min-width: 200px;
+            padding: 10px 0;
+            margin-left: 5px;
+            border: 1px solid rgba(136, 193, 71, 0.3);
+        }
+
+        .submenu li {
+            position: relative;
+            list-style: none;
+        }
+
+        .submenu li:hover .subsubmenu {
+            display: block;
+        }
+
+        .subsubmenu a {
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+
         h1 {
             color: #88c147;
             text-align: center;
             font-size: 48px;
-            margin-bottom: 20px;
+            margin: 40px 0 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
@@ -61,11 +138,7 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .use-case-card:hover {
-            transform: translateY(-5px);
+            scroll-margin-top: 100px;
         }
         
         .use-case-image {
@@ -106,17 +179,6 @@
             color: white;
         }
         
-        .info-section h2 {
-            color: #88c147;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        
-        .info-section p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        
         footer {
             text-align: center;
             padding: 20px;
@@ -126,28 +188,47 @@
         }
         
         @media (max-width: 768px) {
-            .use-cases-grid {
-                grid-template-columns: 1fr;
-            }
+            .use-cases-grid { grid-template-columns: 1fr; }
             h1 { font-size: 32px; }
-            .navbar a { margin: 0 10px; font-size: 14px; }
+            .nav-container { flex-direction: column; align-items: center; gap: 10px; }
+            .submenu { position: static; margin-top: 5px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="navbar">
-            <a href="/">Home</a>
-            <a href="/FirstPage/ML">Use Case</a>
-            <a href="/LinearRegression/">Linear Regression</a>
-            <a href="/logisticRegression">Logistic Regression</a>
-        </div>
 
-        <h1> MACHINE LEARNING USE CASE</h1>
+   <div class="navbar">
+    <div class="nav-container">
+        <div class="nav-item">
+            <a href="/">Home</a>
+        </div>
+        <div class="nav-item">
+            <a href="#">ML Use Case▼</a>
+            <div class="submenu">
+                <a href="/FirstPage/ML#case1">• Use Case 1: Bank Fraud Detection</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="#">Supervised Machine Learning ▼</a>
+            <div class="submenu">
+                <li>
+                    <a href="#">Linear Regression ▶</a>
+                    <div class="subsubmenu">
+                        <a href="/linear_basic">• Basic Concepts</a>
+                        <a href="/linear_application">• Application</a>
+                    </div>
+                </li>
+                <a href="/logisticRegression">Logistic Regression</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <h1>MACHINE LEARNING USE CASE</h1>
         
         <div class="use-case-grid">
-            <!-- Use Case 1: Bank Fraud Detection -->
-            <div class="use-case-card">
+            <div id="case1" class="use-case-card">
                 <div class="use-case-image">
                     <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bank Fraud Detection">
                 </div>
@@ -158,17 +239,18 @@
                     It is based on variables such as frequency, amount, location, history and statistical correlations.
                 </div>
             </div>
-                    
+        </div>
+        
         <div class="info-section">
-            <h2> Supervised Learning: Linear & Logistic Regression</h2>
+            <h2>Supervised Learning: Linear & Logistic Regression</h2>
             <p>Supervised learning uses labeled data to train models that can predict outcomes.<br>
             <strong>Linear Regression</strong> predicts continuous values (like grades or prices), while<br>
             <strong>Logistic Regression</strong> predicts binary outcomes (like purchase or no purchase).<br>
             Both are fundamental algorithms in Machine Learning.</p>
         </div>
-
-    <footer>
-            <p>Machine Learning Project | Real-World Use Case </p>
+        
+        <footer>
+            <p>Machine Learning Project |  Real-World Use Case | Linear & Logistic Regression</p>
             <p>© 2026 - Natalia Chaparro</p>
         </footer>
     </div>

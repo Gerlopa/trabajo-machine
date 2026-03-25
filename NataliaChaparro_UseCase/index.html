@@ -18,29 +18,105 @@
             color: white;
         }
 
+        /* Navbar con submenús */
         .navbar {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
-            padding: 15px;
-            text-align: center;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(136, 193, 71, 0.3);
         }
 
-        .navbar a {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
             color: #88c147;
             text-decoration: none;
             font-size: 18px;
-            margin: 0 20px;
-            padding: 8px 20px;
+            font-weight: bold;
+            padding: 10px 20px;
+            display: block;
             transition: 0.3s;
             border-radius: 30px;
         }
 
-        .navbar a:hover {
+        .nav-item > a:hover {
             background: #88c147;
             color: #1a3b4f;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            min-width: 280px;
+            padding: 15px 0;
+            margin-top: 10px;
+            border: 1px solid rgba(136, 193, 71, 0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .submenu a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 10px 25px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .submenu a:hover {
+            background: #88c147;
+            color: #1a3b4f;
+            padding-left: 35px;
+        }
+
+        .nav-item:hover .submenu {
+            display: block;
+        }
+
+        .subsubmenu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            min-width: 200px;
+            padding: 10px 0;
+            margin-left: 5px;
+            border: 1px solid rgba(136, 193, 71, 0.3);
+        }
+
+        .submenu li {
+            position: relative;
+            list-style: none;
+        }
+
+        .submenu li:hover .subsubmenu {
+            display: block;
+        }
+
+        .subsubmenu a {
+            padding: 8px 20px;
+            font-size: 14px;
         }
 
         .hero {
@@ -78,7 +154,7 @@
             color: #ccc;
             max-width: 600px;
             margin: 0 auto;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         footer {
@@ -90,35 +166,56 @@
         }
 
         @media (max-width: 768px) {
+            .nav-container { flex-direction: column; align-items: center; gap: 10px; }
+            .submenu { position: static; margin-top: 5px; }
+            .subsubmenu { position: static; left: 20px; margin-left: 20px; }
             .hero-content h1 { font-size: 40px; }
             .hero-content p { font-size: 18px; }
-            .navbar a { margin: 0 10px; font-size: 14px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/FirstPage/ML">Use Case</a>
-        <a href="/LinearRegression/">Linear Regression</a>
-        <a href="/logisticRegression">Logistic Regression</a>
+   <div class="navbar">
+    <div class="nav-container">
+        <div class="nav-item">
+            <a href="/">Home</a>
+        </div>
+        <div class="nav-item">
+            <a href="#">ML Use Case ▼</a>
+            <div class="submenu">
+                <a href="/FirstPage/ML#case1">• Use Case 1: Bank Fraud Detection</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="#">Supervised Machine Learning ▼</a>
+            <div class="submenu">
+                <li>
+                    <a href="#">Linear Regression ▶</a>
+                    <div class="subsubmenu">
+                        <a href="/linear_basic">• Basic Concepts</a>
+                        <a href="/linear_application">• Application</a>
+                    </div>
+                </li>
+                <a href="/logisticRegression">Logistic Regression</a>
+            </div>
+        </div>
     </div>
+</div>
 
     <div class="hero">
         <div class="hero-content">
             <h1>Welcome to Machine Learning</h1>
             <p>Explore the world of Artificial Intelligence, predictive models, and real-world applications.</p>
             <div class="small-text">
-                Machine Learning is a branch of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It powers everything from recommendation systems to medical diagnosis.
+                Machine Learning is a branch of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed.
             </div>
         </div>
     </div>
 
     <footer>
-            <p>Machine Learning Project |  Real-World Use Case | Linear & Logistic Regression</p>
-            <p>© 2026 - Natalia Chaparro</p>
-        </footer>
-    </div>
+        <p>Machine Learning Project | Natalia Chaparro | © 2026</p>
+    </footer>
+
 </body>
 </html>
