@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Regression | Grade Predictor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a3b4f 0%, #2c5a6e 100%);
+            font-family: 'Times New Roman', serif;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .navbar {
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: #88c147;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 20px;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            background: #88c147;
+            color: #1a3b4f;
+            border-radius: 25px;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            color: #88c147;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #ecf0f1;
+            font-style: italic;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .form-group {
+            margin: 25px 0;
+        }
+        
+        label {
+            font-size: 24px;
+            color: #003153;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        input {
+            width: 80%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #88c147;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #4a7b9d;
+            box-shadow: 0 0 10px rgba(136,193,71,0.5);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #88c147 0%, #6aa33d 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(136,193,71,0.4);
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, #003153 0%, #1a4b6e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .result-card h2 {
+            color: #88c147;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .grade {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            background: rgba(136,193,71,0.3);
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 60px;
+        }
+        
+        .info-box {
+            background: rgba(136,193,71,0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .info-box h3 {
+            color: #88c147;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box p {
+            color: white;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            label { font-size: 20px; }
+            .grade { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="/"> Home</a>
+            <a href="/FirstPage/ML"> Use Case</a>
+            <a href="/LinearRegression/"> Linear Regression</a>
+            <a href="/logisticRegression"> Logistic Regression</a>
+        </div>
+        
+        <div class="hero">
+            <h1> Linear Regression</h1>
+            <p>Predict your grade based on study hours</p>
+        </div>
+        
+        <div class="card">
+            <form method="post">
+                <div class="form-group">
+                    <label> Study Hours per Week</label>
+                    <input type="number" name="hours" step="0.5" placeholder="Example: 15.5" required>
+                </div>
+                <button type="submit"> Predict Grade</button>
+            </form>
+            
+            {% if result is not none %}
+            <div class="result-card">
+                <h2> Your Predicted Grade</h2>
+                <div class="grade">{{ result }} / 100</div>
+                {% if result >= 70 %}
+                    <p style="color: #88c147; margin-top: 15px;"> Excellent! Keep studying hard!</p>
+                {% elif result >= 50 %}
+                    <p style="color: #f39c12; margin-top: 15px;"> Good! A little more effort will get you higher!</p>
+                {% else %}
+                    <p style="color: #e74c3c; margin-top: 15px;"> More study time is recommended to improve your grade.</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="info-box">
+            <h3>How Linear Regression Works</h3>
+            <p>Linear regression finds the relationship between study hours (X) and final grade (Y).</p>
+            <p><strong>Formula:</strong> Grade = 2.5 × Hours + 50 (maximum 100)</p>
+        </div>
+        
+        <footer>
+            <p>Machine Learning Project | Linear Regression Module | Grade Predictor</p>
+            <p>© 2026 - Natalia Chaparro</p>
+        </footer>
+    </div>
+</body>
+</html>
