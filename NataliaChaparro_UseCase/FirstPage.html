@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Use Cases | Machine Learning Project</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a3b4f 0%, #2c5a6e 100%);
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .navbar {
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .navbar a {
+            color: #88c147;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 20px;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            background: #88c147;
+            color: #1a3b4f;
+            border-radius: 25px;
+        }
+        
+        h1 {
+            color: #88c147;
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .use-case-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .use-case-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .use-case-image {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .use-case-image img {
+            width: 100%;
+            max-width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .use-case-title {
+            color: #003153;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-left: 4px solid #88c147;
+            padding-left: 15px;
+        }
+        
+        .use-case-description {
+            color: #2c3e50;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        
+        .info-section {
+            background: rgba(0,0,0,0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .info-section h2 {
+            color: #88c147;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .info-section p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 32px; }
+            .navbar a { margin: 0 10px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="/FirstPage/ML">Use Case</a>
+            <a href="/LinearRegression/">Linear Regression</a>
+            <a href="/logisticRegression">Logistic Regression</a>
+        </div>
+
+        <h1> MACHINE LEARNING USE CASE</h1>
+        
+        <div class="use-case-grid">
+            <!-- Use Case 1: Bank Fraud Detection -->
+            <div class="use-case-card">
+                <div class="use-case-image">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bank Fraud Detection">
+                </div>
+                <div class="use-case-title">1. Bank Fraud Detection</div>
+                <div class="use-case-description">
+                    It involves the use of classification models that identify atypical behaviors within large volumes of transactional data.
+                    The system learns historical patterns of behavior and calculates the probability that a new transaction is legitimate or fraudulent.
+                    It is based on variables such as frequency, amount, location, history and statistical correlations.
+                </div>
+            </div>
+                    
+        <div class="info-section">
+            <h2> Supervised Learning: Linear & Logistic Regression</h2>
+            <p>Supervised learning uses labeled data to train models that can predict outcomes.<br>
+            <strong>Linear Regression</strong> predicts continuous values (like grades or prices), while<br>
+            <strong>Logistic Regression</strong> predicts binary outcomes (like purchase or no purchase).<br>
+            Both are fundamental algorithms in Machine Learning.</p>
+        </div>
+
+    <footer>
+            <p>Machine Learning Project | Real-World Use Case </p>
+            <p>© 2026 - Natalia Chaparro</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning | Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar a {
+            color: #88c147;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 20px;
+            padding: 8px 20px;
+            transition: 0.3s;
+            border-radius: 30px;
+        }
+
+        .navbar a:hover {
+            background: #88c147;
+            color: #1a3b4f;
+        }
+
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            color: #88c147;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .small-text {
+            font-size: 16px;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.6);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 40px; }
+            .hero-content p { font-size: 18px; }
+            .navbar a { margin: 0 10px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/FirstPage/ML">Use Case</a>
+        <a href="/LinearRegression/">Linear Regression</a>
+        <a href="/logisticRegression">Logistic Regression</a>
+    </div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Machine Learning</h1>
+            <p>Explore the world of Artificial Intelligence, predictive models, and real-world applications.</p>
+            <div class="small-text">
+                Machine Learning is a branch of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It powers everything from recommendation systems to medical diagnosis.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+            <p>Machine Learning Project |  Real-World Use Case | Linear & Logistic Regression</p>
+            <p>© 2026 - Natalia Chaparro</p>
+        </footer>
+    </div>
+</body>
+</html>
