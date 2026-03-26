@@ -1,0 +1,106 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="card">
+
+<h2>Linear Regression - Explanation</h2>
+
+<h3>What is Linear Regression?</h3>
+<p>Linear Regression is a supervised learning algorithm used to predict a continuous numerical value based on one or more input features. It assumes a linear relationship between the independent variable(s) (features) and the dependent variable (target).</p>
+
+<hr>
+
+<h3>Key Concepts</h3>
+<ul>
+    <li><strong>Supervised Learning:</strong> The algorithm learns from labeled data (input-output pairs).</li>
+    <li><strong>Continuous Output:</strong> Predicts numerical values (e.g., prices, temperatures, grades).</li>
+    <li><strong>Linear Relationship:</strong> Fits a straight line (in 2D) or hyperplane (in higher dimensions) through the data.</li>
+</ul>
+
+<hr>
+
+<h3>The Mathematical Foundation</h3>
+<p><strong>Simple Linear Regression (one feature):</strong></p>
+<p style="text-align: center; font-size: 18px; padding: 10px;">y = mx + b</p>
+<ul>
+    <li><strong>y:</strong> Predicted output value</li>
+    <li><strong>x:</strong> Input feature</li>
+    <li><strong>m:</strong> Slope (how much y changes for each unit of x)</li>
+    <li><strong>b:</strong> Intercept (y-value when x = 0)</li>
+</ul>
+
+<p><strong>Multiple Linear Regression:</strong></p>
+<p style="text-align: center; font-size: 18px; padding: 10px;">y = b₀ + b₁x₁ + b₂x₂ + ... + bₙxₙ</p>
+<ul>
+    <li><strong>b₀:</strong> Intercept</li>
+    <li><strong>b₁, b₂, ..., bₙ:</strong> Coefficients for each feature</li>
+    <li><strong>x₁, x₂, ..., xₙ:</strong> Input features</li>
+</ul>
+
+<hr>
+
+<h3>How It Works</h3>
+<ol>
+    <li><strong>Data Preparation:</strong> Collect labeled training data with features and target values.</li>
+    <li><strong>Model Training:</strong> Use an optimization algorithm (e.g., Ordinary Least Squares) to find the best-fit line.</li>
+    <li><strong>Cost Function:</strong> Minimize the Mean Squared Error (MSE) - the average of squared differences between predicted and actual values.</li>
+    <li><strong>Prediction:</strong> Use the trained model to predict output for new input data.</li>
+</ol>
+
+<hr>
+
+<h3>Common Use Cases</h3>
+<ul>
+    <li><strong>Stock Price Prediction:</strong> Predict future prices based on historical data.</li>
+    <li><strong>Real Estate:</strong> Estimate house prices based on features like size, location, age.</li>
+    <li><strong>Sales Forecasting:</strong> Predict revenue based on marketing spend.</li>
+    <li><strong>Academic Performance:</strong> Predict grades based on study hours and attendance.</li>
+    <li><strong>Healthcare:</strong> Estimate patient recovery time based on treatment parameters.</li>
+</ul>
+
+<hr>
+
+<h3>Advantages & Disadvantages</h3>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Advantages</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Disadvantages</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Simple and interpretable</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Assumes linear relationship</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Computationally efficient</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Sensitive to outliers</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Fast to train</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Poor with non-linear data</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Works well with small datasets</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Requires feature scaling</td>
+    </tr>
+</table>
+
+<hr>
+
+<h3>Performance Metrics</h3>
+<ul>
+    <li><strong>R² Score (Coefficient of Determination):</strong> Measures how well the model explains variance (0 to 1, higher is better).</li>
+    <li><strong>Mean Squared Error (MSE):</strong> Average of squared prediction errors (lower is better).</li>
+    <li><strong>Root Mean Squared Error (RMSE):</strong> Square root of MSE, in the same units as the target variable.</li>
+    <li><strong>Mean Absolute Error (MAE):</strong> Average absolute difference between predictions and actual values.</li>
+</ul>
+
+<hr>
+
+<p style="text-align: center; margin-top: 20px;">
+    <a href="/regression" style="color: #007bff; text-decoration: none; font-weight: bold;">Try the Linear Regression Application →</a>
+</p>
+
+</div>
+
+{% endblock %}
