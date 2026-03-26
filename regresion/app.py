@@ -8,6 +8,14 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
+@app.route("/linear_explanation")
+def linear_explanation():
+    return render_template("linear_explanation.html")
+
+@app.route("/logistic_explanation")
+def logistic_explanation():
+    return render_template("logistic_explanation.html")
+
 @app.route("/regression", methods=["GET", "POST"])
 def regression_view():
     prediction = None
