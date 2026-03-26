@@ -1,3 +1,7 @@
+
+/* My Use Case is on the folder "use case", to be more specific, templates -> UseCase1 */
+/* I dediced to made this file to show how supose was the first code version, after cleaning it */
+
 {% extends "index.html" %}
 
 {% block content %}
