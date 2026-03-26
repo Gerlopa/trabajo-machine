@@ -1,0 +1,31 @@
+
+/* My Use Case is on the folder "use case", to be more specific, templates -> UseCase1 */
+/* I dediced to made this file to show how supose was the first code version, after cleaning it */
+
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Automatic Email Classification System (Spam vs Not Spam)</h2>
+
+    <p><strong>Problem:</strong> Imagine needing to confirm someone’s identity quickly and securely-whether it’s unlocking a phone, entering a building, or passing through airport security. Traditional methods like passwords or ID cards can be lost, stolen, or faked. The problem is: how can we verify a person’s identity in a fast, reliable, and contactless way? Facial recognition aims to solve this by using a person’s unique facial features as a form of identification.</p>
+
+    <p><strong>Type:</strong> This use case mainly relies on supervised learning, combined with deep learning, especially Convolutional Neural Networks. The system is trained on large datasets of labeled face images to learn how to distinguish one person from another.</p>
+
+    <p><strong>Input:</strong>The input is typically an image or video frame containing a human face.
+This data may include; Facial images captured by cameras - Variations in lighting, angles, and expressions - Preprocessed facial features</p>
+
+    <p><strong>Output:</strong> The system outputs; The identity of the person  or
+A similarity score indicating whether the face matches a stored profile</p>
+
+    <p><strong>Relevance:</strong> Facial recognition is already part of everyday life. It’s used to unlock smartphones, enhance security in airports, support law enforcement, and even personalize user experiences in apps. Its biggest advantage is convenience-it works quickly and doesn’t require physical contact.
+
+However, it also raises important concerns about privacy, consent, and potential misuse. Because of this, many countries and organizations are still debating how it should be regulated and used responsibly.</p>
+
+</div>
+
+{% endblock %}
+
+</div>
