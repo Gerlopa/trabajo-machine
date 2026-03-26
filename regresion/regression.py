@@ -3,34 +3,50 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from sklearn.linear_model import LinearRegression
+import matplotlib
+matplotlib.use('Agg') 
 
-# DATASET
-data = {
-    "Study Hours": [10, 15, 12, 8, 14, 5, 16, 7, 11, 13, 9, 4, 18, 3, 17, 6, 14, 2, 20, 1],
-    "Final Grade": [3.8, 4.2, 3.6, 3, 4.5, 2.5, 4.8, 2.8, 3.7, 4, 3.2, 2.2, 5, 1.8, 4.9, 2.7, 4.4, 1.5, 5, 1]
-}
 
-df = pd.DataFrame(data)
+df = pd.read_csv("data/health_activity_data.csv")
 
-X = df[["Study Hours"]]
-y = df["Final Grade"]
+X = df[[
+    "Age",
+    "Height_cm"
+]]
+
+y = df["Weight_kg"]
+
 
 model = LinearRegression()
 model.fit(X, y)
 
-def calculate_grade(study_hours):
-    return model.predict([[study_hours]])[0]
+def calculate_regression(age, height):
+    data = [[age, height]]
+    return model.predict(data)[0]
 
-def generate_graph():
-    plt.figure()
-    plt.scatter(X, y)
-    plt.plot(X, model.predict(X))
-    plt.xlabel("Study Hours")
-    plt.ylabel("Final Grade")
+def generate_graph_regression():
+    fig, ax = plt.subplots()
+
+    ax.scatter(df["Height_cm"], y)
+
+    # Promedio de edad
+    avg_age = df["Age"].mean()
+
+    X_line = pd.DataFrame({
+        "Age": [avg_age] * len(df),
+        "Height_cm": df["Height_cm"]
+    })
+
+    y_line = model.predict(X_line)
+
+    ax.plot(df["Height_cm"], y_line)
+
+    ax.set_xlabel("Height (cm)")
+    ax.set_ylabel("Weight (kg)")
 
     img = io.BytesIO()
-    plt.savefig(img, format='png')
-    plt.close()
-    img.seek(0)
+    fig.savefig(img, format='png')
+    plt.close(fig)
 
+    img.seek(0)
     return base64.b64encode(img.getvalue()).decode()
