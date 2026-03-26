@@ -1,11 +1,9 @@
-/* ===== RESET ===== */
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #1a3b4f, #2c5a6e);
 }
 
-/* ===== NAVBAR ===== */
 .navbar {
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(10px);
@@ -13,19 +11,16 @@ body {
     border-bottom: 1px solid rgba(136, 193, 71, 0.3);
 }
 
-/* CONTENEDOR NAV */
 .nav-container {
     display: flex;
     justify-content: center;
     gap: 50px;
 }
 
-/* ITEM */
 .nav-item {
     position: relative;
 }
 
-/* LINK PRINCIPAL */
 .nav-item > a {
     color: #88c147;
     text-decoration: none;
@@ -35,13 +30,11 @@ body {
     transition: 0.3s;
 }
 
-/* HOVER PRINCIPAL */
 .nav-item > a:hover {
     background: #88c147;
     color: #1a3b4f;
 }
 
-/* ===== SUBMENÚ ===== */
 .submenu {
     display: none;
     position: absolute;
@@ -58,12 +51,10 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* 🔥 MOSTRAR SUBMENÚ */
 .nav-item:hover .submenu {
     display: block;
 }
 
-/* 🔥 LINKS UNO DEBAJO DEL OTRO */
 .submenu a {
     display: block;                /* CLAVE */
     padding: 10px 20px;
@@ -73,14 +64,12 @@ body {
     transition: 0.3s;
 }
 
-/* HOVER SUBMENÚ */
 .submenu a:hover {
     background: #88c147;
     color: #1a3b4f;
     padding-left: 30px;
 }
 
-/* ===== SUBSUBMENU ===== */
 .subsubmenu {
     display: none;
     position: absolute;
@@ -93,17 +82,14 @@ body {
     min-width: 200px;
 }
 
-/* MOSTRAR SUBSUBMENU */
 .submenu-item:hover .subsubmenu {
     display: block;
 }
 
-/* ===== CONTENIDO ===== */
 .container {
     padding: 30px;
 }
 
-/* ===== HERO ===== */
 .hero {
     height: 300px;
     margin-bottom: 25px;
@@ -132,7 +118,6 @@ body {
     font-size: 18px;
 }
 
-/* ===== CARDS ===== */
 .card {
     background: white;
     padding: 20px;
@@ -142,7 +127,6 @@ body {
     box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
