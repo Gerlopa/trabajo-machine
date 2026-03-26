@@ -1,0 +1,163 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="card">
+
+<h2>Logistic Regression - Explanation</h2>
+
+<h3>What is Logistic Regression?</h3>
+<p>Logistic Regression is a supervised learning algorithm used for binary classification problems (predicting one of two outcomes: Yes/No, 0/1, True/False). Despite its name, it's a classification algorithm, not a regression algorithm. It estimates the probability that an instance belongs to a particular class.</p>
+
+<hr>
+
+<h3>Key Concepts</h3>
+<ul>
+    <li><strong>Supervised Learning:</strong> The algorithm learns from labeled data with known class outcomes.</li>
+    <li><strong>Binary Classification:</strong> Predicts one of two possible outcomes (0 or 1).</li>
+    <li><strong>Probability-Based:</strong> Outputs a probability between 0 and 1, then classifies based on a threshold (usually 0.5).</li>
+    <li><strong>Sigmoid Function:</strong> Uses an S-shaped curve to map predictions to probabilities.</li>
+</ul>
+
+<hr>
+
+<h3>The Mathematical Foundation</h3>
+<p><strong>Sigmoid Function:</strong></p>
+<p style="text-align: center; font-size: 18px; padding: 10px;">σ(z) = 1 / (1 + e^(-z))</p>
+<ul>
+    <li>Transforms any value into a probability between 0 and 1.</li>
+    <li>When z approaches +∞, σ(z) → 1</li>
+    <li>When z approaches -∞, σ(z) → 0</li>
+    <li>When z = 0, σ(z) = 0.5</li>
+</ul>
+
+<p><strong>Logistic Regression Equation:</strong></p>
+<p style="text-align: center; font-size: 18px; padding: 10px;">P(y=1|x) = 1 / (1 + e^(-(b₀ + b₁x₁ + b₂x₂ + ... + bₙxₙ)))</p>
+<ul>
+    <li><strong>P(y=1|x):</strong> Probability that the outcome is 1 given the features</li>
+    <li><strong>b₀:</strong> Intercept term</li>
+    <li><strong>b₁, b₂, ..., bₙ:</strong> Coefficients for each feature</li>
+    <li><strong>x₁, x₂, ..., xₙ:</strong> Input features</li>
+</ul>
+
+<hr>
+
+<h3>How It Works</h3>
+<ol>
+    <li><strong>Data Preparation:</strong> Collect labeled training data with features and binary class labels (0 or 1).</li>
+    <li><strong>Model Training:</strong> Use optimization algorithms (e.g., Gradient Descent) to find coefficients that minimize the loss function.</li>
+    <li><strong>Cost Function:</strong> Minimize Cross-Entropy Loss (Log Loss) - measures difference between predicted probabilities and actual labels.</li>
+    <li><strong>Prediction:</strong> Calculate probability for new samples and classify based on a threshold (typically 0.5).</li>
+    <li><strong>Classification:</strong> If probability ≥ 0.5, predict class 1; otherwise, predict class 0.</li>
+</ol>
+
+<hr>
+
+<h3>Common Use Cases</h3>
+<ul>
+    <li><strong>Customer Purchase Prediction:</strong> Will a customer buy or not?</li>
+    <li><strong>Disease Diagnosis:</strong> Does a patient have a disease or not?</li>
+    <li><strong>Email Spam Detection:</strong> Is an email spam or legitimate?</li>
+    <li><strong>Credit Approval:</strong> Approve or deny a loan application?</li>
+    <li><strong>College Admission:</strong> Will a student be accepted or rejected?</li>
+    <li><strong>Customer Churn:</strong> Will a customer stay or leave?</li>
+    <li><strong>Vehicle Insurance:</strong> Will a customer file a claim or not?</li>
+</ul>
+
+<hr>
+
+<h3>Logistic Regression vs Linear Regression</h3>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Aspect</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Linear Regression</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Logistic Regression</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><strong>Purpose</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Predict continuous values</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Predict class/probability</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><strong>Output</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Any real number</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Probability (0 to 1)</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><strong>Output Function</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Linear function</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Sigmoid function</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><strong>Cost Function</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Mean Squared Error</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Cross-Entropy Loss</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><strong>Problem Type</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Regression</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">Classification</td>
+    </tr>
+</table>
+
+<hr>
+
+<h3>Advantages & Disadvantages</h3>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Advantages</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Disadvantages</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Interpretable coefficients</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Assumes linear decision boundary</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Outputs probabilities</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Limited to binary classification</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Fast and efficient</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Poor with non-linear patterns</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Works with small datasets</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Sensitive to outliers</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Probabilistic interpretations</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Requires feature scaling for optimal performance</td>
+    </tr>
+</table>
+
+<hr>
+
+<h3>Performance Metrics</h3>
+<ul>
+    <li><strong>Accuracy:</strong> Percentage of correct predictions overall.</li>
+    <li><strong>Precision:</strong> Of positive predictions, how many were actually positive?</li>
+    <li><strong>Recall (Sensitivity):</strong> Of actual positive cases, how many did we identify?</li>
+    <li><strong>F1-Score:</strong> Harmonic mean of Precision and Recall (balances both).</li>
+    <li><strong>ROC-AUC:</strong> Area under the Receiver Operating Characteristic curve (measures classification quality).</li>
+    <li><strong>Confusion Matrix:</strong> Shows True Positives, True Negatives, False Positives, and False Negatives.</li>
+</ul>
+
+<hr>
+
+<h3>Classification Threshold</h3>
+<p>By default, logistic regression uses a 0.5 threshold for binary classification:</p>
+<ul>
+    <li>If predicted probability ≥ 0.5 → Predict class 1</li>
+    <li>If predicted probability < 0.5 → Predict class 0</li>
+</ul>
+<p><em>Note: You can adjust this threshold based on the costs of false positives vs false negatives.</em></p>
+
+<hr>
+
+<p style="text-align: center; margin-top: 20px;">
+    <a href="/logistic" style="color: #007bff; text-decoration: none; font-weight: bold;">Try the Logistic Regression Application →</a>
+</p>
+
+</div>
+
+{% endblock %}
