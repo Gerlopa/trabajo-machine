@@ -1,0 +1,162 @@
+/* ===== RESET ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1a3b4f, #2c5a6e);
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(136, 193, 71, 0.3);
+}
+
+/* CONTENEDOR NAV */
+.nav-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+/* ITEM */
+.nav-item {
+    position: relative;
+}
+
+/* LINK PRINCIPAL */
+.nav-item > a {
+    color: #88c147;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* HOVER PRINCIPAL */
+.nav-item > a:hover {
+    background: #88c147;
+    color: #1a3b4f;
+}
+
+/* ===== SUBMENÚ ===== */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+
+    border-radius: 15px;
+    padding: 10px 0;
+    min-width: 220px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* 🔥 MOSTRAR SUBMENÚ */
+.nav-item:hover .submenu {
+    display: block;
+}
+
+/* 🔥 LINKS UNO DEBAJO DEL OTRO */
+.submenu a {
+    display: block;                /* CLAVE */
+    padding: 10px 20px;
+    color: #ecf0f1;                /* blanco */
+    text-decoration: none;         /* sin morado */
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+/* HOVER SUBMENÚ */
+.submenu a:hover {
+    background: #88c147;
+    color: #1a3b4f;
+    padding-left: 30px;
+}
+
+/* ===== SUBSUBMENU ===== */
+.subsubmenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+
+    background: rgba(0, 0, 0, 0.95);
+    border-radius: 10px;
+    padding: 10px 0;
+    min-width: 200px;
+}
+
+/* MOSTRAR SUBSUBMENU */
+.submenu-item:hover .subsubmenu {
+    display: block;
+}
+
+/* ===== CONTENIDO ===== */
+.container {
+    padding: 30px;
+}
+
+/* ===== HERO ===== */
+.hero {
+    height: 300px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1551288049-bebda4e38f71');
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* TEXTO HERO */
+.hero h1 {
+    color: #88c147;
+    font-size: 42px;
+}
+
+.hero p {
+    color: white;
+    font-size: 18px;
+}
+
+/* ===== CARDS ===== */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border-left: 5px solid #88c147;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .submenu {
+        position: static;
+        width: 100%;
+    }
+
+    .subsubmenu {
+        position: static;
+        margin-left: 20px;
+    }
+}
