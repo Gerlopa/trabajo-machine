@@ -9,58 +9,10 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("index.html")
-@app.route("/case1")
-def case1():
-    return render_template("case1.html")
-
-@app.route("/case2")
-def case2():
-    return render_template("case2.html")
-
-@app.route("/case3")
-def case3():
-    return render_template("case3.html")
-
-@app.route("/case4")
-def case4():
-    return render_template("case4.html")
-
-
-@app.route("/linear_explanation")
-def linear_explanation():
-    return render_template("linear_explanation.html")
 
 @app.route("/logistic_explanation")
 def logistic_explanation():
     return render_template("logistic_explanation.html")
-
-@app.route("/regression", methods=["GET", "POST"])
-def regression():
-    prediction = None
-    graph = None
-
-    if request.method == "POST":
-        try:
-            age = request.form.get("age")
-            height = request.form.get("height")
-
-            if not age or not height:
-                return "Faltan datos del formulario"
-
-            age = float(age)
-            height = float(height)
-
-            prediction = round(
-                calculate_regression(age, height), 2
-            )
-
-            graph = generate_graph_regression()
-
-        except Exception as e:
-            return f"Error en regresión: {e}"
-
-    return render_template("regression.html", prediction=prediction, graph=graph)
-
 
 @app.route("/logistic", methods=["GET", "POST"])
 def logistic_view():
