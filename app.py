@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
-
 from logistic import predecir, obtener_datos, obtener_roc_graph
-from regression import calculate_regression, generate_graph_regression
+import quadratic
+from regression import calculate_regression, generate_graph_regression, obtener_metricas
 
 app = Flask(__name__)
 
@@ -34,53 +34,47 @@ def linear_explanation():
 def logistic_explanation():
     return render_template("logistic_explanation.html")
 
+@app .route("/quadratic_explanation")
+def quadratic_explanation():
+    return render_template("quadratic_explanation.html")
+
 @app.route("/regression", methods=["GET", "POST"])
-def regression():
+def regression_view():
     prediction = None
     graph = None
+    metrics = None
 
     if request.method == "POST":
         try:
-            age = request.form.get("age")
-            height = request.form.get("height")
+            height = float(request.form["height"])
+            weight = float(request.form["weight"])
 
-            if not age or not height:
-                return "Faltan datos del formulario"
-
-            age = float(age)
-            height = float(height)
-
-            prediction = round(
-                calculate_regression(age, height), 2
-            )
-
+            prediction = calculate_regression(height, weight)
             graph = generate_graph_regression()
+            metrics = obtener_metricas()
 
         except Exception as e:
             return f"Error en regresión: {e}"
 
-    return render_template("regression.html", prediction=prediction, graph=graph)
-
+    return render_template(
+        "regression.html",
+        prediction=prediction,
+        graph=graph,
+        metrics=metrics
+    )
 
 @app.route("/logistic", methods=["GET", "POST"])
 def logistic_view():
     prediction = None
-    metrics = None
+    metrics = obtener_datos()  # <-- siempre cargamos columnas
     roc_graph = None
 
     if request.method == "POST":
         try:
-            datos = [
-                float(request.form["edad"]),
-                float(request.form["ingreso_mensual"]),
-                float(request.form["visitas_web_mes"]),
-                float(request.form["tiempo_sitio_min"]),
-                float(request.form["compras_previas"]),
-                float(request.form["descuento_usado"])
-            ]
+            columnas = metrics["columnas"]
+            datos = [float(request.form[col]) for col in columnas]
 
             prediction = predecir(datos)
-            metrics = obtener_datos()
             roc_graph = obtener_roc_graph()
 
         except Exception as e:
@@ -92,7 +86,30 @@ def logistic_view():
         metrics=metrics,
         roc_graph=roc_graph
     )
+@app.route("/quadratic", methods=["GET", "POST"])
+def quadratic_view():
+    prediction = None
 
+    # datos del modelo
+    metrics = quadratic.datos_qda()
+    roc_graph = quadratic.roc_qda()
+    decision_graph = quadratic.grafica_decision_qda()  # 👈 FALTABA
+
+    if request.method == "POST":
+        try:
+            columnas = metrics["columnas"]
+            input_data = {col: float(request.form[col]) for col in columnas}
+            prediction = quadratic.predecir_qda(input_data)
+        except Exception as e:
+            return f"Error en QDA: {e}"
+
+    return render_template(
+        "quadratic.html",
+        prediction=prediction,
+        metrics=metrics,
+        roc_graph=roc_graph,
+        decision_graph=decision_graph
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
