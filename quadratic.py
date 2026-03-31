@@ -126,7 +126,7 @@ def roc_qda():
 
 
 def grafica_decision_qda():
-    # 🔥 Variables para visualización
+    # Variables para visualización
     X_vis = data[["BMI", "Age"]]
     y_vis = data["Heart_Disease"]
 
