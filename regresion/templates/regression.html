@@ -2,31 +2,46 @@
 
 {% block content %}
 <div class="card">
+<p>Predict BMI based on Height and Weight.</p>
+<h2>BMI Prediction Model</h2>
 
-<h2>Linear Regression - Health Prediction</h2>
-<p>Predict weight based on age and height.</p>
+<ul>
+    <li><strong>Problem description:</strong> Estimate a person's Body Mass Index (BMI) using height and weight measurements, allowing a quick evaluation of their physical condition.</li>
+    
+    <li><strong>Type of Machine Learning:</strong> Supervised Learning (Linear Regression)</li>
+    
+    <li><strong>Input data:</strong> Height (cm) and Weight (kg)</li>
+    
+    <li><strong>Expected output:</strong> Predicted BMI value</li>
+    
+    <li><strong>Real-world relevance:</strong> Helps identify weight-related health conditions and supports basic health assessments.</li>
+</ul>
+<center><img src="https://www.makemebetter.net/wp-content/uploads/2021/05/MMB-IMAGE-JPG-9.png" alt="Ejemplo" width="300" height="230"><center>
+    
+<center><h2>Linear Regression - Health Prediction</h2></center>
+<hr>
 
 <form method="POST">
 
-    <label>Age:</label>
-    <input type="number" name="age" step="any" required>
-
     <label>Height (cm):</label>
-    <input type="number" name="height" step="any" required>
+    <input type="number" step="0.1" name="height" required>
+
+    <label>Weight (kg):</label>
+    <input type="number" step="0.1" name="weight" required>
 
     <br><br>
-    <button type="submit">Predict</button>
+    <button type="submit">Predict BMI</button>
 
 </form>
 
-
 {% if prediction %}
-
-    <h3>Predicted Weight:</h3>
-    <p>{{ prediction }} kg</p>
-</div>
+    <h3>Predicted BMI:</h3>
+    <p>{{ prediction }}</p>
 {% endif %}
 
+{% if metrics %}
+    <p>R² Score: {{ metrics.r2 }}</p>
+{% endif %}
 
 {% if graph %}
 <div class="card">
@@ -35,4 +50,5 @@
 </div>
 {% endif %}
 
+</div>
 {% endblock %}
