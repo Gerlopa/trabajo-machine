@@ -3,62 +3,80 @@
 {% block content %}
 <div class="card">
 
-<h2>Logistic Regression - Application</h2>
-<p>This model uses a dataset loaded from an Excel file.</p>
-
+<h2>Logistic Regression - Heart Disease Prediction</h2>
+<p>Predict whether a person is at risk of heart disease based on health and lifestyle data.</p>
+<center>
+        <img src="https://obesimad.com/wp-content/uploads/2020/09/h%C3%A1bitos-de-vida-saludable.jpg" 
+             alt="Linear Regression Example" 
+             width="300" 
+             height="230">
+    </center>
+<hr>
 <ul>
-    <li><strong>Problem description:</strong> Predict whether a customer will buy based on demographic and behavior features.</li>
-    <li><strong>Type of Machine Learning:</strong> Supervised Learning (binary classification)</li>
-    <li><strong>Input data:</strong> Age, income, web visits, time on site, prior purchases, discount usage.</li>
-    <li><strong>Expected output:</strong> 0 (no compra) o 1 (compra).</li>
-    <li><strong>Real-world relevance:</strong> Optimizar campañas de marketing y segmentación de clientes.</li>
+   <li><strong>Problem description:</strong> Predict whether a person is at risk of heart disease based on health and lifestyle features.
+  </li> <li><strong>Type of Machine Learning:</strong> Supervised Learning (binary classification)
+  </li> <li><strong>Input data:</strong> Age, gender, height, weight, BMI, daily steps, heart rate, sleep hours, exercise habits, calorie intake, smoking status, alcohol consumption, diabetes condition, and blood pressure.
+  </li> <li><strong>Expected output:</strong> 0 (low risk) o 1 (high risk of heart disease).
+  </li> <li><strong>Real-world relevance:</strong> Helps in early detection of cardiovascular risks and supports preventive healthcare decisions.</li> 
 </ul>
 
-<hr>
-
-<h3>Try the Model</h3>
+<h3>Enter Patient Data</h3>
 
 <form method="POST">
-
-    <label>Age:</label>
-    <input type="number" name="edad" required>
-
-    <label>Monthly Income:</label>
-    <input type="number" name="ingreso_mensual" required>
-
-    <label>Website Visits:</label>
-    <input type="number" name="visitas_web_mes" required>
-
-    <label>Time on Site (min):</label>
-    <input type="number" step="0.1" name="tiempo_sitio_min" required>
-
-    <label>Previous Purchases:</label>
-    <input type="number" name="compras_previas" required>
-
-    <label>Discount Used (0 or 1):</label>
-    <input type="number" name="descuento_usado" required>
-
-    <br><br>
+    {% for col in metrics.columnas %}
+        <div style="margin-bottom:10px;">
+            <label>{{ col }}:</label>
+            <input type="number" step="any" name="{{ col }}" placeholder="{{ col }}" required>
+        </div>
+    {% endfor %}
     <button type="submit">Predict</button>
-
 </form>
 
 {% if prediction is not none %}
-    <h3>Result:</h3>
+    <hr>
+    <h3>Prediction Result</h3>
     {% if prediction == 1 %}
-        <p style="color: green;">Customer WILL buy</p>
+        <p style="color:red; font-weight:bold;"> High probability of heart disease</p>
     {% else %}
-        <p style="color: red;">Customer will NOT buy</p>
+        <p style="color:green; font-weight:bold;"> Low probability of heart disease</p>
     {% endif %}
 {% endif %}
 
 {% if metrics %}
     <hr>
-    <h3>Modelo Logistic</h3>
-    <p>Accuracy: {{ metrics.accuracy }}</p>
-    <p>AUC: {{ metrics.auc }}</p>
-    <img src="data:image/png;base64,{{ roc_graph }}" alt="ROC Curve" style="max-width: 100%; height: auto;">
-</div>
+    <h3>Model Evaluation Metrics</h3>
+    <ul>
+        <li>Accuracy: {{ metrics.accuracy }}</li>
+        <li>Precision: {{ metrics.precision }}</li>
+        <li>Recall: {{ metrics.recall }}</li>
+        <li>F1-score: {{ metrics.f1 }}</li>
+        <li>AUC: {{ metrics.auc }}</li>
+    </ul>
+
+    <h3>ROC Curve</h3>
+    <img src="data:image/png;base64,{{ roc_graph }}" alt="ROC Curve" style="max-width:600px;">
+
+    {% if metrics.cm %}
+    <h3>Confusion Matrix</h3>
+    <table border="1" style="border-collapse: collapse; text-align:center;">
+        <tr>
+            <th></th>
+            <th>Predicted 0</th>
+            <th>Predicted 1</th>
+        </tr>
+        <tr>
+            <th>Actual 0</th>
+            <td>{{ metrics.cm[0][0] }}</td>
+            <td>{{ metrics.cm[0][1] }}</td>
+        </tr>
+        <tr>
+            <th>Actual 1</th>
+            <td>{{ metrics.cm[1][0] }}</td>
+            <td>{{ metrics.cm[1][1] }}</td>
+        </tr>
+    </table>
+    {% endif %}
 {% endif %}
 
+</div>
 {% endblock %}
