@@ -10,39 +10,33 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/logistic_explanation")
-def logistic_explanation():
-    return render_template("logistic_explanation.html")
+@app .route("/quadratic_explanation")
+def quadratic_explanation():
+    return render_template("quadratic_explanation.html")
 
-@app.route("/logistic", methods=["GET", "POST"])
-def logistic_view():
+@app.route("/quadratic", methods=["GET", "POST"])
+def quadratic_view():
     prediction = None
-    metrics = None
-    roc_graph = None
+
+    # datos del modelo
+    metrics = quadratic.datos_qda()
+    roc_graph = quadratic.roc_qda()
+    decision_graph = quadratic.grafica_decision_qda()  # 👈 FALTABA
 
     if request.method == "POST":
         try:
-            datos = [
-                float(request.form["edad"]),
-                float(request.form["ingreso_mensual"]),
-                float(request.form["visitas_web_mes"]),
-                float(request.form["tiempo_sitio_min"]),
-                float(request.form["compras_previas"]),
-                float(request.form["descuento_usado"])
-            ]
-
-            prediction = predecir(datos)
-            metrics = obtener_datos()
-            roc_graph = obtener_roc_graph()
-
+            columnas = metrics["columnas"]
+            input_data = {col: float(request.form[col]) for col in columnas}
+            prediction = quadratic.predecir_qda(input_data)
         except Exception as e:
-            return f"Error en logística: {e}"
+            return f"Error en QDA: {e}"
 
     return render_template(
-        "logistic.html",
+        "quadratic.html",
         prediction=prediction,
         metrics=metrics,
-        roc_graph=roc_graph
+        roc_graph=roc_graph,
+        decision_graph=decision_graph
     )
 
 
