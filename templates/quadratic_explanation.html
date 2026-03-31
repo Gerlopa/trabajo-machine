@@ -1,0 +1,89 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="card">
+
+<center><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/QDA_example.png" alt="QDA Example" width="400" height="250"></center>
+
+<h2>Quadratic Discriminant Analysis - Explanation</h2>
+
+<h3>What is QDA?</h3>
+<p>Quadratic Discriminant Analysis (QDA) is a supervised classification algorithm that models each class with its own Gaussian distribution and covariance. It is used to separate classes when they are not linearly separable.</p>
+
+<hr>
+
+<h3>Key Concepts</h3>
+<ul>
+    <li><strong>Supervised Learning:</strong> The algorithm learns from labeled data (input-output pairs).</li>
+    <li><strong>Classification:</strong> Predicts a discrete class label (e.g., 0 = low risk, 1 = high risk).</li>
+    <li><strong>Quadratic Decision Boundary:</strong> The boundary between classes is curved (quadratic).</li>
+    <li><strong>Gaussian Assumption:</strong> Each class is assumed to have a multivariate normal distribution.</li>
+    <li><strong>Useful for:</strong> Small to medium datasets with nonlinear class separation.</li>
+</ul>
+
+<hr>
+
+<h3>Mathematical Foundation</h3>
+<p>QDA computes class-specific mean vectors <strong>μₖ</strong> and covariance matrices <strong>Σₖ</strong> for each class k, then predicts the class with the highest posterior probability:</p>
+<p style="text-align: center; font-size: 18px; padding: 10px;">
+  δₖ(x) = -0.5 log|Σₖ| - 0.5 (x - μₖ)<sup>T</sup> Σₖ⁻¹ (x - μₖ) + log πₖ
+</p>
+<ul>
+    <li><strong>x:</strong> Input feature vector</li>
+    <li><strong>μₖ:</strong> Mean of class k</li>
+    <li><strong>Σₖ:</strong> Covariance matrix of class k</li>
+    <li><strong>πₖ:</strong> Prior probability of class k</li>
+</ul>
+
+<hr>
+
+<h3>How It Works</h3>
+<ol>
+    <li><strong>Data Preparation:</strong> Collect labeled data with features and target class.</li>
+    <li><strong>Estimate Parameters:</strong> Calculate mean and covariance for each class.</li>
+    <li><strong>Discriminant Function:</strong> Compute δₖ(x) for each class and select the class with maximum δₖ(x).</li>
+    <li><strong>Prediction:</strong> Assign new data points to the class with highest posterior probability.</li>
+</ol>
+
+<hr>
+
+<h3>Common Use Cases</h3>
+<ul>
+    <li><strong>Medical Diagnosis:</strong> Predict risk categories (e.g., heart disease).</li>
+    <li><strong>Fraud Detection:</strong> Classify transactions as fraudulent or not.</li>
+    <li><strong>Marketing:</strong> Segment customers based on behavior.</li>
+    <li><strong>Biometrics:</strong> Classify images or signals with nonlinear separation.</li>
+</ul>
+
+<hr>
+
+<h3>Advantages & Disadvantages</h3>
+<table style="width: 100%; border-collapse: collapse;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Advantages</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Disadvantages</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Can handle nonlinear class separation</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Requires sufficient data to estimate covariance matrices</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Simple probabilistic interpretation</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Sensitive to outliers</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">✓ Works well with small to medium datasets</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">✗ Assumes Gaussian distribution</td>
+    </tr>
+</table>
+
+<hr>
+
+<p style="text-align: center; margin-top: 20px;">
+    <a href="/quadratic" style="color: #007bff; text-decoration: none; font-weight: bold;">Try the QDA Application →</a>
+</p>
+
+</div>
+
+{% endblock %}

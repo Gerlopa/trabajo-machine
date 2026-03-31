@@ -1,0 +1,86 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>QDA - Health Prediction</h2>
+    <img src="https://images.squarespace-cdn.com/content/v1/5daddb33ee92bf44231c2fef/1585087475172-PQXUW6RFJA7WJJF6195X/predictive-analytics-in-healthcare.gif?format=2500w" alt="Ejemplo" width="300" height="230">
+    
+<ul>
+    <li><strong>Problem description:</strong> Predict whether a person is at risk of heart disease based on health and lifestyle features, using a model capable of capturing non-linear relationships between variables.</li>
+    
+    <li><strong>Type of Machine Learning:</strong> Supervised Learning (binary classification)</li>
+    
+    <li><strong>Input data:</strong> Age, gender, height, weight, BMI, daily steps, heart rate, sleep hours, exercise habits, calorie intake, smoking status, alcohol consumption, diabetes condition, and blood pressure (systolic and diastolic).</li>
+    
+    <li><strong>Expected output:</strong> 0 (low risk) or 1 (high risk of heart disease).</li>
+    
+    <li><strong>Real-world relevance:</strong> Helps in early detection of cardiovascular risks by modeling complex, non-linear patterns in patient data, supporting preventive healthcare decisions.</li>
+</ul>
+
+    <!-- FORM -->
+    <form method="POST" class="form-grid">
+        {% for col in metrics.columnas %}
+        <div class="form-group">
+            <label>{{ col }}</label>
+            <input type="number" step="any" name="{{ col }}" required>
+        </div>
+        {% endfor %}
+
+        <div class="form-full">
+            <button type="submit">Predict</button>
+        </div>
+    </form>
+
+    <!-- RESULT -->
+    {% if prediction is not none %}
+    <div class="result-box {% if prediction == 1 %}danger{% else %}success{% endif %}">
+        {% if prediction == 1 %}
+            High probability of heart disease
+        {% else %}
+            Low probability
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <hr>
+
+    <!-- METRICS -->
+    <h3>Metrics</h3>
+    <p>Accuracy: {{ metrics.accuracy }}</p>
+    <p>Precision: {{ metrics.precision }}</p>
+    <p>Recall: {{ metrics.recall }}</p>
+    <p>F1-score: {{ metrics.f1 }}</p>
+    <p>AUC: {{ metrics.auc }}</p>
+
+    <!-- CONFUSION MATRIX -->
+    <h3>Confusion Matrix</h3>
+    <table class="confusion-table">
+        <tr>
+            <th></th>
+            <th>Predicted 0</th>
+            <th>Predicted 1</th>
+        </tr>
+        <tr>
+            <th>Actual 0</th>
+            <td>{{ metrics.cm_values.tn }}</td>
+            <td class="fp">{{ metrics.cm_values.fp }}</td>
+        </tr>
+        <tr>
+            <th>Actual 1</th>
+            <td class="fn">{{ metrics.cm_values.fn }}</td>
+            <td>{{ metrics.cm_values.tp }}</td>
+        </tr>
+    </table>
+
+    <!-- ROC -->
+    <h3>ROC Curve</h3>
+    <img src="data:image/png;base64,{{ roc_graph }}">
+
+    <!--  DECISION BOUNDARY -->
+    <h3>Decision Boundary</h3>
+    <img src="data:image/png;base64,{{ decision_graph }}">
+
+</div>
+{% endblock %}
