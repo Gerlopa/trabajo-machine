@@ -34,34 +34,6 @@ def linear_explanation():
 def logistic_explanation():
     return render_template("logistic_explanation.html")
 
-@app.route("/regression", methods=["GET", "POST"])
-def regression():
-    prediction = None
-    graph = None
-
-    if request.method == "POST":
-        try:
-            age = request.form.get("age")
-            height = request.form.get("height")
-
-            if not age or not height:
-                return "Faltan datos del formulario"
-
-            age = float(age)
-            height = float(height)
-
-            prediction = round(
-                calculate_regression(age, height), 2
-            )
-
-            graph = generate_graph_regression()
-
-        except Exception as e:
-            return f"Error en regresión: {e}"
-
-    return render_template("regression.html", prediction=prediction, graph=graph)
-
-
 @app.route("/logistic", methods=["GET", "POST"])
 def logistic_view():
     prediction = None
