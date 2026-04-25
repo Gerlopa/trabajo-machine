@@ -5,7 +5,7 @@ import base64
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_curve, auc, confusion_matrix, precision_score, recall_score, f1_score
-from imblearn.over_sampling import SMOTE  # Para balancear clases
+
 
 # Cargar dataset
 data = pd.read_csv('data/health_activity_data.csv')
