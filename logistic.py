@@ -37,9 +37,6 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-#SMOTE para balancear clases en el entrenamiento
-sm = SMOTE(random_state=42)
-X_train_res, y_train_res = sm.fit_resample(X_train, y_train)
 
 # Modelo
 model = LogisticRegression(max_iter=1000)
