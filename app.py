@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from logistic import predecir, obtener_datos, obtener_roc_graph
 import quadratic
 from regression import calculate_regression, generate_graph_regression, obtener_metricas
-
+from clustering import clustering_completo
 app = Flask(__name__)
 
 
