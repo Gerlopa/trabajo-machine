@@ -1,4 +1,7 @@
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
@@ -15,13 +18,13 @@ def clustering_completo():
     Xscaled = scaler.fit_transform(X)
 
     iteraciones = []
-    graficas = []
 
     for i in [1, 2, 3]:
 
         model = KMeans(n_clusters=3, max_iter=i, random_state=42, n_init=1)
         labels = model.fit_predict(Xscaled)
 
+        # Centroides en escala real
         centroids_scaled = model.cluster_centers_
         centroids = scaler.inverse_transform(centroids_scaled)
 
@@ -29,7 +32,7 @@ def clustering_completo():
 
         # 📊 gráfica
         plt.figure()
-        plt.scatter(df['Age'], df['Weight_kg'], c=labels)
+        plt.scatter(df['Age'], df['Weight_kg'], c=labels, cmap='viridis', alpha=0.6)
         plt.scatter(centroids[:, 0], centroids[:, 1], marker='X', s=200)
 
         plt.title(f"Iteración {i}")
@@ -50,9 +53,10 @@ def clustering_completo():
             "graph": graph
         })
 
-    # 📋 resultado final (iteración 3)
+    # Resultado final
     final_model = KMeans(n_clusters=3, random_state=42, n_init=10)
     df['Cluster'] = final_model.fit_predict(Xscaled)
+
     result = df.to_dict(orient='records')
 
     return {
