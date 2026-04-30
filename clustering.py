@@ -24,15 +24,11 @@ def clustering_completo():
         model = KMeans(n_clusters=3, max_iter=i, random_state=42, n_init=1)
         labels = model.fit_predict(Xscaled)
 
-        # Centroides en escala real
-        centroids_scaled = model.cluster_centers_
-        centroids = scaler.inverse_transform(centroids_scaled)
-
+        centroids = scaler.inverse_transform(model.cluster_centers_)
         inertia = model.inertia_
 
-        # 📊 gráfica
         plt.figure()
-        plt.scatter(df['Age'], df['Weight_kg'], c=labels, cmap='viridis', alpha=0.6)
+        plt.scatter(df['Age'], df['Weight_kg'], c=labels, alpha=0.6)
         plt.scatter(centroids[:, 0], centroids[:, 1], marker='X', s=200)
 
         plt.title(f"Iteración {i}")
@@ -53,13 +49,10 @@ def clustering_completo():
             "graph": graph
         })
 
-    # Resultado final
     final_model = KMeans(n_clusters=3, random_state=42, n_init=10)
     df['Cluster'] = final_model.fit_predict(Xscaled)
 
-    result = df.to_dict(orient='records')
-
     return {
         "iteraciones": iteraciones,
-        "result": result
+        "result": df.to_dict(orient='records')
     }
