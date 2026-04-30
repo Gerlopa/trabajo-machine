@@ -66,7 +66,7 @@ def regression_view():
 @app.route("/logistic", methods=["GET", "POST"])
 def logistic_view():
     prediction = None
-    metrics = obtener_datos()  # <-- siempre cargamos columnas
+    metrics = obtener_datos()
     roc_graph = None
 
     if request.method == "POST":
@@ -89,11 +89,9 @@ def logistic_view():
 @app.route("/quadratic", methods=["GET", "POST"])
 def quadratic_view():
     prediction = None
-
-    # datos del modelo
     metrics = quadratic.datos_qda()
     roc_graph = quadratic.roc_qda()
-    decision_graph = quadratic.grafica_decision_qda()  # 👈 FALTABA
+    decision_graph = quadratic.grafica_decision_qda()  #FALTABA
 
     if request.method == "POST":
         try:
