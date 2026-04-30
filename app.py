@@ -37,6 +37,12 @@ def logistic_explanation():
 @app .route("/quadratic_explanation")
 def quadratic_explanation():
     return render_template("quadratic_explanation.html")
+@app.route("/clustering_explanation")
+def clustering_explanation():
+    return render_template("clustering_explanation.html")
+@app.route("/kmeans_explanation")
+def kmeans_explanation():
+    return render_template("kmeans_explanation.html")
 
 @app.route("/regression", methods=["GET", "POST"])
 def regression_view():
@@ -108,6 +114,19 @@ def quadratic_view():
         roc_graph=roc_graph,
         decision_graph=decision_graph
     )
+@app.route('/clustering')
+def clustering_view():
+    try:
+        data = clustering_completo()
+
+        return render_template(
+            'clustering.html',
+            iteraciones=data["iteraciones"],
+            result=data["result"]
+        )
+
+    except Exception as e:
+        return f"Error en clustering: {e}"
 
 if __name__ == "__main__":
     app.run(debug=True)
