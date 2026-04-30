@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="card">
+    <h2>Clustering Application</h2>
+
+    <ul>
+        <li><strong>Problem description:</strong><br>
+        The goal is to group individuals based on their health characteristics such as age and weight. 
+        This allows identifying patterns or segments within the population without prior labels.</li>
+
+        <li><strong>Dataset explanation:</strong><br>
+        The dataset contains health-related information including Age, Weight, Height, BMI, and other variables. 
+        For this clustering task, we selected Age and Weight to visualize the groups in a 2D space.</li>
+
+        <li><strong>Model training:</strong><br>
+        We used the KMeans algorithm, an unsupervised learning technique. 
+        The data was first standardized using StandardScaler, and then grouped into 3 clusters. 
+        The model iteratively adjusts the centroids until convergence.</li>
+
+        <li><strong>Results (tables, centroids, clusters):</strong><br>
+</div>
+
+<!-- ITERACIONES -->
+{% for r in iteraciones %}
+<div class="card">
+
+    <h3>Iteration {{ r.iteracion }}</h3>
+
+    <img src="data:image/png;base64,{{ r.graph }}" 
+         style="max-width:100%; border-radius:10px;">
+
+    <p><strong>Inertia (Variance):</strong> {{ r.inercia }}</p>
+
+    <table border="1">
+        <tr>
+            <th>Cluster</th>
+            <th>Age</th>
+            <th>Weight</th>
+        </tr>
+
+        {% for c in r.centroides %}
+        <tr>
+            <td>{{ loop.index0 }}</td>
+            <td>{{ c[0] | round(2) }}</td>
+            <td>{{ c[1] | round(2) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endfor %}
+
+<!-- RESULTADO FINAL -->
+{% if result %}
+<div class="card">
+    <h3>Final Clusters</h3>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Age</th>
+            <th>Weight</th>
+            <th>Cluster</th>
+        </tr>
+
+        {% for row in result %}
+        <tr>
+            <td>{{ row.ID }}</td>
+            <td>{{ row.Age }}</td>
+            <td>{{ row.Weight_kg }}</td>
+            <td>{{ row.Cluster }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+
+{% endblock %}

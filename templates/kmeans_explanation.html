@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>KMeans Clustering - Explanation</h2>
+
+    <p><strong>What is KMeans?</strong><br>
+    KMeans is an unsupervised machine learning algorithm used to group data into clusters based on similarity. 
+    It works by dividing data into K groups, where each group is represented by a centroid.</p>
+
+    <p><strong>How does it work?</strong></p>
+    <ol>
+        <li>Select the number of clusters (K)</li>
+        <li>Initialize random centroids</li>
+        <li>Assign each point to the nearest centroid</li>
+        <li>Recalculate centroids based on assigned points</li>
+        <li>Repeat until convergence</li>
+    </ol>
+
+    <p><strong>Why use KMeans?</strong><br>
+    It helps discover hidden patterns in data without needing labeled outputs. 
+    It is widely used in segmentation, recommendation systems, and data analysis.</p>
+
+    <p><strong>In this project:</strong><br>
+    We use KMeans to group individuals based on health data (Age and Weight), 
+    allowing us to identify similar profiles.</p>
+
+</div>
+
+{% endblock %}

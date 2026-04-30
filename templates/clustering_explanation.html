@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <center>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/K-means_convergence.gif/400px-K-means_convergence.gif" 
+             alt="Clustering Example" width="300" height="230">
+    </center>
+
+    <h2>Clustering for Data Grouping</h2>
+
+    <p><strong>Problem:</strong> 
+    Imagine having a large amount of data but no labels or categories. 
+    For example, grouping people based on age and weight without knowing anything about them beforehand.  
+    The problem is: how can we automatically find patterns and group similar data together?  
+    Clustering solves this by organizing data into groups based on similarity.
+    </p>
+
+    <p><strong>Type:</strong> 
+    This use case belongs to <strong>Unsupervised Learning</strong>.  
+    Algorithms like <strong>KMeans</strong> are used to group data without predefined labels.
+    </p>
+
+    <p><strong>Input:</strong></p>
+    <ul>
+        <li>Numerical data (e.g., age, weight)</li>
+        <li>No labels required</li>
+        <li>Dataset from CSV or database</li>
+    </ul>
+
+    <p><strong>Output:</strong></p>
+    <ul>
+        <li>Clusters (groups of similar data)</li>
+        <li>Cluster labels for each data point</li>
+        <li>Cluster centers (centroids)</li>
+    </ul>
+
+    <p><strong>Relevance:</strong> 
+    Clustering is widely used in real-world applications:
+    </p>
+    <ul>
+        <li>Customer segmentation in marketing</li>
+        <li>Grouping patients in healthcare</li>
+        <li>Data analysis and pattern discovery</li>
+        <li>Agriculture (grouping animals or crops)</li>
+    </ul>
+
+    <p>
+    Its main advantage is that it works without labeled data, making it useful for discovering hidden patterns.  
+    However, choosing the correct number of clusters (K) can be challenging.
+    </p>
+
+</div>
+
+{% endblock %}
