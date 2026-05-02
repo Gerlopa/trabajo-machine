@@ -12,44 +12,94 @@
     <h2>Clustering for Data Grouping</h2>
 
     <p><strong>Problem:</strong> 
-    Imagine having a large amount of data but no labels or categories. 
-    For example, grouping people based on age and weight without knowing anything about them beforehand.  
-    The problem is: how can we automatically find patterns and group similar data together?  
-    Clustering solves this by organizing data into groups based on similarity.
+    In many scenarios, datasets do not have labels. The goal is to automatically 
+    group similar data points based on their characteristics.  
+    Clustering helps identify hidden patterns and structures in the data.
     </p>
 
     <p><strong>Type:</strong> 
-    This use case belongs to <strong>Unsupervised Learning</strong>.  
-    Algorithms like <strong>KMeans</strong> are used to group data without predefined labels.
+    This belongs to <strong>Unsupervised Learning</strong>.  
+    One of the most common algorithms is <strong>K-Means</strong>.
     </p>
+
+    <p><strong>Mathematical Model:</strong></p>
+
+    <p>
+    The objective of K-Means is to minimize the distance between data points 
+    and their assigned cluster centroid.
+    </p>
+
+    :contentReference[oaicite:0]{index=0}
+
+    <p>
+    Where:
+    </p>
+    <ul>
+        <li><strong>K</strong>: number of clusters</li>
+        <li><strong>Cᵢ</strong>: cluster i</li>
+        <li><strong>μᵢ</strong>: centroid of cluster i</li>
+        <li><strong>||x - μᵢ||</strong>: distance between point and centroid</li>
+    </ul>
+
+    <p><strong>Distance Function (Euclidean):</strong></p>
+
+    :contentReference[oaicite:1]{index=1}
+
+    <p><strong>Process:</strong></p>
+    <ul>
+        <li>Select number of clusters (K)</li>
+        <li>Initialize centroids randomly</li>
+        <li>Assign each point to nearest centroid</li>
+        <li>Update centroids using mean of points</li>
+        <li>Repeat until convergence</li>
+    </ul>
+
+    <p><strong>Centroid Update Formula:</strong></p>
+
+    :contentReference[oaicite:2]{index=2}
 
     <p><strong>Input:</strong></p>
     <ul>
-        <li>Numerical data (e.g., age, weight)</li>
+        <li>Numerical dataset (CSV, database)</li>
         <li>No labels required</li>
-        <li>Dataset from CSV or database</li>
     </ul>
 
     <p><strong>Output:</strong></p>
     <ul>
-        <li>Clusters (groups of similar data)</li>
-        <li>Cluster labels for each data point</li>
-        <li>Cluster centers (centroids)</li>
+        <li>Clusters</li>
+        <li>Cluster labels</li>
+        <li>Centroids</li>
     </ul>
 
-    <p><strong>Relevance:</strong> 
-    Clustering is widely used in real-world applications:
-    </p>
+    <p><strong>Evaluation:</strong></p>
     <ul>
-        <li>Customer segmentation in marketing</li>
-        <li>Grouping patients in healthcare</li>
-        <li>Data analysis and pattern discovery</li>
-        <li>Agriculture (grouping animals or crops)</li>
+        <li>Elbow Method (optimal K)</li>
+        <li>Silhouette Score</li>
+    </ul>
+
+    <p><strong>Relevance:</strong></p>
+    <ul>
+        <li>Customer segmentation</li>
+        <li>Medical data analysis</li>
+        <li>Agriculture (grouping livestock)</li>
+        <li>Anomaly detection</li>
+    </ul>
+
+    <p><strong>Advantages:</strong></p>
+    <ul>
+        <li>No labeled data needed</li>
+        <li>Simple and fast</li>
+    </ul>
+
+    <p><strong>Disadvantages:</strong></p>
+    <ul>
+        <li>Need to choose K</li>
+        <li>Sensitive to outliers</li>
     </ul>
 
     <p>
-    Its main advantage is that it works without labeled data, making it useful for discovering hidden patterns.  
-    However, choosing the correct number of clusters (K) can be challenging.
+    In conclusion, clustering is a fundamental technique in machine learning 
+    that combines statistical analysis and geometry to discover patterns in data.
     </p>
 
 </div>
